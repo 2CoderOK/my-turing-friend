@@ -1,0 +1,706 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://src/Level/ForgeTutorial.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/Gear.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Level/TunnelUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/art/ui/mago1.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/art/ui/hero_empty.png" type="Texture" id=12]
+[ext_resource path="res://assets/art/tileset/tileset_all.tres" type="TileSet" id=13]
+[ext_resource path="res://assets/art/ui/hero_full.png" type="Texture" id=14]
+[ext_resource path="res://src/Buttons/Button.tscn" type="PackedScene" id=30]
+[ext_resource path="res://assets/art/platforms/rline_1.png" type="Texture" id=31]
+[ext_resource path="res://assets/art/platforms/rline_3.png" type="Texture" id=32]
+[ext_resource path="res://assets/art/platforms/rline_2.png" type="Texture" id=33]
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=38]
+[ext_resource path="res://src/Level/HeroProgressBar.gd" type="Script" id=39]
+
+[sub_resource type="Animation" id=77]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=78]
+resource_name = "fadein"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "fadeout"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../../TutorialText:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="SpriteFrames" id=54]
+animations = [ {
+"frames": [ ExtResource( 31 ), ExtResource( 33 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "run",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=55]
+extents = Vector2( 1631, 64.5 )
+
+[sub_resource type="RectangleShape2D" id=81]
+extents = Vector2( 33, 31.5 )
+
+[sub_resource type="DynamicFont" id=82]
+size = 64
+outline_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+font_data = ExtResource( 6 )
+
+[node name="ForgeTutorial" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 576.0, 574.0 ],
+"_edit_vertical_guides_": [ -566.0, 515.0, 690.0, 820.0, 996.0 ]
+}
+
+[node name="TunnelUI" parent="." instance=ExtResource( 3 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BlackScreen" type="ColorRect" parent="UI"]
+margin_right = 2000.0
+margin_bottom = 1000.0
+color = Color( 0.129412, 0.117647, 0.12549, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+root_node = NodePath("../BlackScreen")
+autoplay = "fadein"
+anims/RESET = SubResource( 77 )
+anims/fadein = SubResource( 78 )
+anims/fadeout = SubResource( 79 )
+
+[node name="HeroProgressBar" type="TextureProgress" parent="UI"]
+visible = false
+margin_left = 6.0
+margin_top = 3.0
+margin_right = 284.0
+margin_bottom = 74.0
+value = 100.0
+texture_under = ExtResource( 12 )
+texture_progress = ExtResource( 14 )
+script = ExtResource( 39 )
+
+[node name="Player" parent="." instance=ExtResource( 38 )]
+position = Vector2( 285, 448 )
+
+[node name="Gear" parent="." instance=ExtResource( 2 )]
+position = Vector2( -519, 445 )
+
+[node name="Conveyor Lines" type="Node" parent="."]
+
+[node name="Line42" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -476, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line43" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -413, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line44" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -349, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line45" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -285, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line48" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -221, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line49" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -158, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line50" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -94, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line51" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( -30, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line46" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 34, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line47" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 98, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line11" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 162, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line12" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 225, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line32" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 289, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line33" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 353, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line34" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 417, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line35" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 481, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line36" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 545, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line37" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 609, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line38" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 673, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line39" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 737, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line40" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 801, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line41" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 865, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line10" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 929, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line1" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 992, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line2" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1056, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line3" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1120, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line4" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1184, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line5" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1248, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line6" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1312, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line7" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1376, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line8" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1440, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line13" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1504, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line9" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1568, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line29" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1632, 584.5 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line14" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1824, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line15" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1888, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line30" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1696, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line31" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1760, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line16" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 1952, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line17" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2016, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line18" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2080, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line19" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2144, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line20" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2208, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line21" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2272, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line22" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2336, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line23" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2400, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line24" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2464, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line25" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2528, 584 )
+frames = SubResource( 54 )
+animation = "run"
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line26" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2592, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 2
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line27" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2656, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Line28" type="AnimatedSprite" parent="Conveyor Lines"]
+position = Vector2( 2720, 584 )
+frames = SubResource( 54 )
+animation = "run"
+frame = 1
+speed_scale = 5.0
+playing = true
+flip_h = true
+
+[node name="Conveyor" type="StaticBody2D" parent="Conveyor Lines"]
+collision_layer = 16
+collision_mask = 33
+constant_linear_velocity = Vector2( 500, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Conveyor Lines/Conveyor"]
+position = Vector2( 1121, 639 )
+shape = SubResource( 55 )
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button1" parent="Buttons" instance=ExtResource( 30 )]
+position = Vector2( 408, 422 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -8.0 ],
+"_edit_vertical_guides_": [ 21.0, 60.0 ]
+}
+
+[node name="Button2" parent="Buttons" instance=ExtResource( 30 )]
+position = Vector2( 713, 424 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -8.0 ],
+"_edit_vertical_guides_": [ 21.0, 60.0 ]
+}
+
+[node name="Button3" parent="Buttons" instance=ExtResource( 30 )]
+position = Vector2( 1018, 422 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -8.0 ],
+"_edit_vertical_guides_": [ 21.0, 60.0 ]
+}
+
+[node name="Button1Timer" type="Timer" parent="Buttons"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Button1Timer2" type="Timer" parent="Buttons"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Button1Timer3" type="Timer" parent="Buttons"]
+wait_time = 3.0
+one_shot = true
+
+[node name="TileMapAll" type="TileMap" parent="."]
+tile_set = ExtResource( 13 )
+collision_layer = 16
+collision_mask = 33
+format = 1
+tile_data = PoolIntArray( 327682, 0, 8, 327700, 0, 8, 393218, 0, 8, 393236, 0, 8, 524279, 0, 3, 524280, 0, 7, 524283, 0, 0, 524284, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 458768, 0, 0, 458769, 0, 0, 458770, 0, 0, 458771, 0, 0, 458772, 0, 0, 458773, 0, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 589817, 0, 5, 655352, 0, 8, 655353, 0, 8, 655354, 0, 8, 655355, 0, 8, 655356, 0, 8, 655357, 0, 8, 655358, 0, 8, 655359, 0, 8, 589824, 0, 8, 589825, 0, 8, 589826, 0, 8, 589827, 0, 8, 589828, 0, 8, 589829, 0, 8, 589830, 0, 8, 589831, 0, 8, 589832, 0, 8, 589833, 0, 8, 589834, 0, 8, 589835, 0, 8, 589836, 0, 8, 589837, 0, 8, 589838, 0, 8, 589839, 0, 8, 589840, 0, 8, 589841, 0, 8, 589842, 0, 8, 589843, 0, 8, 589844, 0, 8, 589845, 0, 8, 589846, 0, 8, 589847, 0, 8, 589848, 0, 8, 589849, 0, 8, 589850, 0, 8, 589851, 0, 8, 589852, 0, 8, 720888, 0, 8, 720889, 0, 8, 720890, 0, 8, 720891, 0, 8, 720892, 0, 8, 720893, 0, 8, 720894, 0, 8, 720895, 0, 8, 655360, 0, 8, 655361, 0, 8, 655362, 0, 8, 655363, 0, 8, 655364, 0, 8, 655365, 0, 8, 655366, 0, 8, 655367, 0, 8, 655368, 0, 8, 655369, 0, 8, 655370, 0, 8, 655371, 0, 8, 655372, 0, 8, 655373, 0, 8, 655374, 0, 8, 655375, 0, 8, 655376, 0, 8, 655377, 0, 8, 655378, 0, 8, 655379, 0, 8, 655380, 0, 8, 655381, 0, 8, 655382, 0, 8, 655383, 0, 8, 655384, 0, 8, 655385, 0, 8, 655386, 0, 8, 655387, 0, 8, 655388, 0, 8, 786424, 0, 8, 786425, 0, 8, 786426, 0, 8, 786427, 0, 8, 786428, 0, 8, 786429, 0, 8, 786430, 0, 8, 786431, 0, 8, 720896, 0, 8, 720897, 0, 8, 720898, 0, 8, 720899, 0, 8, 720900, 0, 8, 720901, 0, 8, 720902, 0, 8, 720903, 0, 8, 720904, 0, 8, 720905, 0, 8, 720906, 0, 8, 720907, 0, 8, 720908, 0, 8, 720909, 0, 8, 720910, 0, 8, 720911, 0, 8, 720912, 0, 8, 720913, 0, 8, 720914, 0, 8, 720915, 0, 8, 720916, 0, 8, 720917, 0, 8, 720918, 0, 8, 720919, 0, 8, 720920, 0, 8, 720921, 0, 8, 720922, 0, 8, 720923, 0, 8, 720924, 0, 8 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 1472, 521 )
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 420, 9 )
+shape = SubResource( 81 )
+
+[node name="TutorialText" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialText"]
+anchor_left = 0.2
+anchor_top = 0.22
+anchor_right = 0.2
+anchor_bottom = 0.7
+margin_right = 1088.0
+margin_bottom = 150.0
+custom_colors/default_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/normal_font = SubResource( 82 )
+text = "Stomp on the buttons to charge the forged gear.
+You need to use all shield types."
+
+[connection signal="timeout" from="Buttons/Button1Timer" to="." method="_on_Button1Timer_timeout"]
+[connection signal="timeout" from="Buttons/Button1Timer2" to="." method="_on_Button1Timer2_timeout"]
+[connection signal="timeout" from="Buttons/Button1Timer3" to="." method="_on_Button1Timer3_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

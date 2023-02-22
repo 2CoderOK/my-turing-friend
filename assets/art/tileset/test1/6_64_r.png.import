@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/6_64_r.png-c648c29481322489611b54f69aae4c0f.res"
+group_file="res://assets/art/tileset/test1/tileset4.png"
+valid=true
+[deps]
+
+
+source_file="res://assets/art/tileset/test1/6_64_r.png"
+dest_files=[ "res://.import/6_64_r.png-c648c29481322489611b54f69aae4c0f.res" ]
+
+[params]
+
+atlas_file="res://assets/art/tileset/test1/tileset4.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

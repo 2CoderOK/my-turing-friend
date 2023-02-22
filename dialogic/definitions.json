@@ -1,0 +1,47 @@
+{
+	"glossary": [
+		{
+			"extra": "",
+			"id": "1676022602-146",
+			"name": "gear",
+			"text": "",
+			"title": "gear",
+			"type": 1
+		},
+		{
+			"extra": "",
+			"id": "1676022551-648",
+			"name": "nuts",
+			"text": "",
+			"title": "nuts",
+			"type": 1
+		},
+		{
+			"extra": "",
+			"id": "1676022584-366",
+			"name": "nut",
+			"text": "",
+			"title": "nut",
+			"type": 1
+		},
+		{
+			"extra": "",
+			"id": "1676022752-918",
+			"name": "armored",
+			"text": "",
+			"title": "armored",
+			"type": 1
+		},
+		{
+			"extra": "",
+			"id": "1676024471-648",
+			"name": "vehicle",
+			"text": "",
+			"title": "vehicle",
+			"type": 1
+		}
+	],
+	"variables": [
+
+	]
+}

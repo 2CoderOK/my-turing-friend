@@ -1,0 +1,25 @@
+{
+	"color": "#ffff0000",
+	"description": "",
+	"display_name": "Turing",
+	"display_name_bool": false,
+	"id": "character-1675264149.json",
+	"mirror_portraits": false,
+	"name": "Turing",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 60,
+	"offset_y": -207,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		},
+		{
+			"name": "turing_icon",
+			"path": "res://assets/art/ui/turing_icon.png"
+		}
+	],
+	"scale": 70,
+	"theme": "theme-1675434380.cfg"
+}

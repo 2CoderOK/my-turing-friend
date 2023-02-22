@@ -1,0 +1,370 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://src/Main/Ending.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/sfx/noise.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/art/player/hero_idle_3_64.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/player/hero_fall_64.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/player/hero_run_2_64.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/player/hero_run_4_64.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/player/hero_idle_2_64.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/player/hero_run_1_64.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/player/hero_jump_64.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/player/hero_run_3_64.png" type="Texture" id=11]
+[ext_resource path="res://assets/art/player/hero_idle_1_64.png" type="Texture" id=12]
+[ext_resource path="res://assets/art/player/hero_idle_4_64.png" type="Texture" id=13]
+[ext_resource path="res://assets/art/tileset/tileset_all.png" type="Texture" id=14]
+[ext_resource path="res://assets/art/items/light1.png" type="Texture" id=15]
+[ext_resource path="res://assets/art/items/comp2.png" type="Texture" id=16]
+[ext_resource path="res://src/Platforms/LiftEngine.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/Platforms/Platform.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/art/platforms/lift_rode_bottom.png" type="Texture" id=19]
+[ext_resource path="res://assets/art/platforms/lift_rode_top.png" type="Texture" id=20]
+[ext_resource path="res://assets/art/platforms/lift_rode_center.png" type="Texture" id=21]
+[ext_resource path="res://assets/art/ui/mago1.ttf" type="DynamicFontData" id=22]
+[ext_resource path="res://assets/audio/sfx/intro.wav" type="AudioStream" id=23]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "jumping",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
+} ]
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+points = PoolVector2Array( 64, 64, 0, 64, 0, 64, 64, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+points = PoolVector2Array( 0, 33.5834, 64, 31.9089, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=19]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 33.0253, 0, 32.4671 )
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( 0, 64, 64, 0, 64, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=21]
+points = PoolVector2Array( 0, 0, 64, 64, 0, 64 )
+
+[sub_resource type="TileSet" id=22]
+0/name = "tileset_all.png 0"
+0/texture = ExtResource( 14 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 4, 4, 640, 640 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 64, 64 )
+0/autotile/spacing = 8
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 11 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 8, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 12 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 13 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 14 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 15 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 16 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 17 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 18 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 19 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 20 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 21 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="Animation" id=23]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -126, -25 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -98, -34 ), Vector2( -98, 168 ) ]
+}
+
+[sub_resource type="DynamicFont" id=25]
+size = 36
+font_data = ExtResource( 22 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="SpriteAnim" type="AnimatedSprite" parent="."]
+position = Vector2( 292, 224 )
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="SpriteAnim"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 22 )
+format = 1
+tile_data = PoolIntArray( 262140, 0, 6, 262141, 0, 1, 262142, 0, 1, 262143, 0, 7, 327676, 0, 8, 327677, 0, 8, 327678, 0, 8, 327679, 0, 8, 262144, 0, 8, 262145, 0, 65537, 262146, 0, 8, 262147, 0, 8, 262148, 0, 65542, 393212, 0, 8, 393213, 0, 8, 393214, 0, 8, 393215, 0, 8, 327680, 0, 8, 327681, 0, 65537, 458748, 0, 8, 458749, 0, 8, 458750, 0, 8, 458751, 0, 8, 393216, 0, 8, 393217, 0, 65537, 524284, 0, 8, 524285, 0, 8, 524286, 0, 8, 524287, 0, 8, 458752, 0, 8, 458753, 0, 65537 )
+
+[node name="Light1" type="Sprite" parent="."]
+position = Vector2( 191, 192 )
+texture = ExtResource( 15 )
+
+[node name="Comp2" type="Sprite" parent="."]
+position = Vector2( 36, 219 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 16 )
+
+[node name="LiftEngine" parent="." instance=ExtResource( 17 )]
+position = Vector2( -92, 204 )
+scale = Vector2( -0.7, 0.7 )
+
+[node name="Platform4" parent="." instance=ExtResource( 18 )]
+position = Vector2( -126, -25 )
+z_index = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform4"]
+autoplay = "move"
+playback_process_mode = 0
+anims/RESET = SubResource( 23 )
+anims/move = SubResource( 24 )
+
+[node name="LiftRodes" type="Node" parent="."]
+
+[node name="Lift1RodeBottom" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, 161 )
+z_index = -1
+texture = ExtResource( 19 )
+
+[node name="Lift1RodeCenter" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, 127 )
+z_index = -1
+texture = ExtResource( 21 )
+
+[node name="Lift1RodeCenter2" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, 66 )
+z_index = -1
+texture = ExtResource( 21 )
+
+[node name="Lift1RodeCenter3" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, 6 )
+z_index = -1
+texture = ExtResource( 21 )
+
+[node name="Lift1RodeCenter5" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, -57 )
+z_index = -1
+texture = ExtResource( 21 )
+
+[node name="Lift1RodeCenter6" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, -102 )
+z_index = -1
+texture = ExtResource( 21 )
+
+[node name="Lift1RodeCenter7" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, -154 )
+z_index = -1
+texture = ExtResource( 21 )
+
+[node name="Lift1RodeTop" type="Sprite" parent="LiftRodes"]
+position = Vector2( -98, -193 )
+z_index = -1
+texture = ExtResource( 20 )
+
+[node name="Text" type="Node" parent="."]
+
+[node name="Page1" type="RichTextLabel" parent="Text"]
+visible = false
+margin_left = 166.0
+margin_top = 342.0
+margin_right = 581.0
+margin_bottom = 438.0
+custom_colors/default_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "I got there ...
+And opened the vault ..."
+
+[node name="Page2" type="RichTextLabel" parent="Text"]
+visible = false
+margin_left = 166.0
+margin_top = 342.0
+margin_right = 581.0
+margin_bottom = 438.0
+custom_colors/default_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "There was only a plain paper ...
+With a text: ...
+"
+
+[node name="Page3" type="RichTextLabel" parent="Text"]
+visible = false
+margin_left = 166.0
+margin_top = 342.0
+margin_right = 581.0
+margin_bottom = 463.0
+custom_colors/default_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "\"You should buy bitcoin.
+That will be a thing soon!
+ date: 01.22.2010\""
+
+[node name="Page4" type="RichTextLabel" parent="Text"]
+visible = false
+margin_left = 166.0
+margin_top = 342.0
+margin_right = 581.0
+margin_bottom = 463.0
+custom_colors/default_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "They are hiding something
+in a secure vault.
+Something important ..."
+
+[node name="Page5" type="RichTextLabel" parent="Text"]
+visible = false
+margin_left = 166.0
+margin_top = 342.0
+margin_right = 581.0
+margin_bottom = 463.0
+custom_colors/default_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "I'll get it, whatever it costs ...
+And it will change everything!
+For us ... for everybody ..."
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="NoiseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -4.952
+pitch_scale = 0.86
+autoplay = true
+
+[node name="EndingMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+volume_db = -7.581
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

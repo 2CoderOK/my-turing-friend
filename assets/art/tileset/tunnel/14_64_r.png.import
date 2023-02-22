@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/14_64_r.png-dd3f91bb64a6b14356869957d0a8103f.res"
+group_file="res://assets/art/tileset/tunnel/tileset.png"
+valid=true
+[deps]
+
+
+source_file="res://assets/art/tileset/tunnel/14_64_r.png"
+dest_files=[ "res://.import/14_64_r.png-dd3f91bb64a6b14356869957d0a8103f.res" ]
+
+[params]
+
+atlas_file="res://assets/art/tileset/tunnel/tileset.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

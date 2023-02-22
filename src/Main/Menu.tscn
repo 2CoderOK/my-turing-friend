@@ -1,0 +1,213 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/art/ui/mago3.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/art/tileset/tileset_all.png" type="Texture" id=2]
+[ext_resource path="res://src/Main/Menu.gd" type="Script" id=3]
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/audio/music/music_0.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/art/ui/mago2.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/art/items/light1.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/items/comp1.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/items/barrel.png" type="Texture" id=9]
+
+[sub_resource type="ConvexPolygonShape2D" id=27]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=28]
+points = PoolVector2Array( 0, 64, 0, 0, 64, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=29]
+points = PoolVector2Array( 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="TileSet" id=10]
+0/name = "tileset_all.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 4, 4, 640, 640 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 64, 64 )
+0/autotile/spacing = 8
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 27 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 8, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 27 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 28 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 29 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 25.5, 75.25 )
+
+[sub_resource type="DynamicFont" id=22]
+size = 36
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+outline_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1042, 327 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "run"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1042, 327 ), Vector2( 1042, 317 ) ]
+}
+
+[node name="Menu" type="Node"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 326.0 ]
+}
+
+[node name="Layer" type="Node2D" parent="."]
+
+[node name="Barrel" type="Sprite" parent="Layer"]
+position = Vector2( 290, 429 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Comp1" type="Sprite" parent="Layer"]
+position = Vector2( 1090, 416 )
+texture = ExtResource( 8 )
+
+[node name="Light1" type="Sprite" parent="Layer"]
+position = Vector2( 735, 448 )
+texture = ExtResource( 7 )
+
+[node name="Player" parent="Layer" instance=ExtResource( 4 )]
+position = Vector2( 687, 513 )
+
+[node name="TileMap" type="TileMap" parent="Layer"]
+tile_set = SubResource( 10 )
+show_collision = true
+format = 1
+tile_data = PoolIntArray( 131064, 0, 8, 131065, 0, 5, 65562, 0, 4, 65563, 0, 8, 65564, 0, 8, 196600, 0, 8, 196601, 0, 8, 196602, 0, 5, 131097, 0, 4, 131098, 0, 8, 131099, 0, 8, 131100, 0, 8, 262136, 0, 8, 262137, 0, 8, 262138, 0, 8, 262139, 0, 5, 196632, 0, 4, 196633, 0, 8, 196634, 0, 8, 196635, 0, 8, 196636, 0, 8, 327672, 0, 8, 327673, 0, 8, 327674, 0, 8, 327675, 0, 8, 327676, 0, 5, 262167, 0, 4, 262168, 0, 8, 262169, 0, 8, 262170, 0, 8, 262171, 0, 8, 262172, 0, 8, 393208, 0, 8, 393209, 0, 8, 393210, 0, 8, 393211, 0, 8, 393212, 0, 8, 393213, 0, 5, 327702, 0, 4, 327703, 0, 8, 327704, 0, 8, 327705, 0, 8, 327706, 0, 8, 327707, 0, 8, 327708, 0, 8, 458744, 0, 8, 458745, 0, 8, 458746, 0, 8, 458747, 0, 8, 458748, 0, 8, 458749, 0, 8, 458750, 0, 5, 393237, 0, 4, 393238, 0, 8, 393239, 0, 8, 393240, 0, 8, 393241, 0, 8, 393242, 0, 8, 393243, 0, 8, 393244, 0, 8, 524280, 0, 8, 524281, 0, 8, 524282, 0, 8, 524283, 0, 8, 524284, 0, 8, 524285, 0, 8, 524286, 0, 8, 524287, 0, 8, 458752, 0, 8, 458753, 0, 8, 458754, 0, 8, 458755, 0, 8, 458756, 0, 8, 458757, 0, 8, 458758, 0, 5, 458766, 0, 4, 458767, 0, 8, 458768, 0, 8, 458769, 0, 8, 458770, 0, 8, 458771, 0, 8, 458772, 0, 8, 458773, 0, 8, 458774, 0, 8, 458775, 0, 8, 458776, 0, 8, 458777, 0, 8, 458778, 0, 8, 458779, 0, 8, 458780, 0, 8, 589816, 0, 8, 589817, 0, 8, 589818, 0, 8, 589819, 0, 8, 589820, 0, 8, 589821, 0, 8, 589822, 0, 8, 589823, 0, 8, 524288, 0, 8, 524289, 0, 8, 524290, 0, 8, 524291, 0, 8, 524292, 0, 8, 524293, 0, 8, 524294, 0, 8, 524295, 0, 8, 524296, 0, 8, 524297, 0, 8, 524298, 0, 8, 524299, 0, 8, 524300, 0, 8, 524301, 0, 8, 524302, 0, 8, 524303, 0, 8, 524304, 0, 8, 524305, 0, 8, 524306, 0, 8, 524307, 0, 8, 524308, 0, 8, 524309, 0, 8, 524310, 0, 8, 524311, 0, 8, 524312, 0, 8, 524313, 0, 8, 524314, 0, 8, 524315, 0, 8, 524316, 0, 8 )
+
+[node name="Area2DQuit" type="Area2D" parent="Layer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layer/Area2DQuit"]
+position = Vector2( 279, 364.75 )
+shape = SubResource( 23 )
+
+[node name="Area2DPlay" type="Area2D" parent="Layer"]
+position = Vector2( 186, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layer/Area2DPlay"]
+position = Vector2( 917, 366 )
+shape = SubResource( 23 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="copyright" type="RichTextLabel" parent="UI"]
+anchor_top = 1.0
+anchor_bottom = 1.2
+margin_left = 544.0
+margin_top = -348.0
+margin_right = 1162.0
+margin_bottom = -348.0
+custom_colors/default_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/normal_font = SubResource( 22 )
+text = "   a game by CoderOK @ 2023
+    music by Luis Humanoide
+font by Nimble Beasts Collective"
+
+[node name="GameTitle" type="Label" parent="UI"]
+margin_left = 383.0
+margin_top = 231.0
+margin_right = 1001.0
+margin_bottom = 307.0
+custom_colors/font_color = Color( 0.960784, 0.913725, 0.74902, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "MY TURING FRIEND"
+align = 1
+
+[node name="Quit" type="Label" parent="UI"]
+margin_left = 243.0
+margin_top = 326.0
+margin_right = 347.0
+margin_bottom = 377.0
+custom_colors/font_color = Color( 0.160784, 0.258824, 0.341176, 1 )
+custom_fonts/font = SubResource( 24 )
+text = "QUIT"
+
+[node name="Play" type="Label" parent="UI"]
+margin_left = 1042.0
+margin_top = 327.0
+margin_right = 1146.0
+margin_bottom = 378.0
+custom_colors/font_color = Color( 0.666667, 0.392157, 0.301961, 1 )
+custom_fonts/font = SubResource( 24 )
+text = "PLAY"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Play"]
+autoplay = "run"
+anims/RESET = SubResource( 25 )
+anims/run = SubResource( 26 )
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -7.0
+autoplay = true
+
+[connection signal="body_entered" from="Layer/Area2DQuit" to="." method="_on_Area2DQuit_body_entered"]
+[connection signal="body_entered" from="Layer/Area2DPlay" to="." method="_on_Area2DPlay_body_entered"]

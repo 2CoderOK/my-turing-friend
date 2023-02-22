@@ -1,0 +1,109 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/sfx/hit.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/sfx/jump_sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/sfx/fall_sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/art/player/hero_idle_4_64.png" type="Texture" id=10]
+[ext_resource path="res://assets/art/player/hero_idle_3_64.png" type="Texture" id=11]
+[ext_resource path="res://assets/art/player/hero_idle_2_64.png" type="Texture" id=12]
+[ext_resource path="res://assets/art/player/hero_idle_1_64.png" type="Texture" id=13]
+[ext_resource path="res://assets/art/player/hero_run_3_64.png" type="Texture" id=15]
+[ext_resource path="res://assets/art/player/hero_fall_64.png" type="Texture" id=16]
+[ext_resource path="res://assets/art/player/hero_run_2_64.png" type="Texture" id=17]
+[ext_resource path="res://assets/art/player/hero_run_1_64.png" type="Texture" id=18]
+[ext_resource path="res://assets/art/player/hero_run_4_64.png" type="Texture" id=19]
+[ext_resource path="res://assets/art/player/hero_jump_64.png" type="Texture" id=20]
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "jumping",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 10.5, 14.75 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 11.25, 15.75 )
+
+[node name="Player" type="KinematicBody2D"]
+scale = Vector2( 2, 2 )
+collision_mask = 94
+script = ExtResource( 1 )
+speed = Vector2( 150, 400 )
+
+[node name="PlatformDetector" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 6 )
+collision_mask = 8
+
+[node name="SpriteAnim" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -16 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 13 )
+animation = "idle"
+playing = true
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 0, -28 )
+current = true
+zoom = Vector2( 0.6, 0.6 )
+process_mode = 0
+smoothing_enabled = true
+smoothing_speed = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -14.75 )
+shape = SubResource( 15 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -13.441
+
+[node name="FallSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -1.768
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1.25, -15.75 )
+shape = SubResource( 14 )
+
+[node name="Hit" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -7.595
+pitch_scale = 1.18
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="Hit" to="." method="_on_Hit_timeout"]
