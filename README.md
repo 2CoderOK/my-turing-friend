@@ -6,10 +6,15 @@ This game was built in 7+ days for Godot Wild Jam #53 (https://2coderok.itch.io/
 This game requires Dialogic (https://github.com/coppolaemilio/dialogic)
 
 Credits:
+
 Design, coding and graphics by CoderOK
+
 Music by Luis Humanoide
+
 Gameover music played by Alisa
+
 Font by Nimble Beasts Collective
+
 
 Watch a video on how this game was created: https://youtu.be/ye3_yYyUFak
 
